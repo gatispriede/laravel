@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
+class Home extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -14,10 +14,14 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
+	private $model = 'navigation';
 
-	public function showWelcome()
+	public function index()
 	{
-		return View::make('hello');
+		//model::load('navigation');
+		$data['navigation'] = Route::model('home@index','navigation@get_values');
+		print_r($data['navigation']);
+		return View::make('page', $data);
 	}
 
 }
